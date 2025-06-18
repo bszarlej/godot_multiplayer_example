@@ -8,8 +8,8 @@ A simple Godot Engine project demonstrating **multiplayer over a local network (
 
 - Local network (LAN) multiplayer with client-server architecture
 - Player movement synchronized across the network
+- Synchronized player animations (e.g. walking, idle)
 - Clean and minimal GDScript code, easy to extend
-
 ---
 
 ## 🛠 Requirements
