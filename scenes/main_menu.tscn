@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cgfpuhagd2pke"]
+[gd_scene load_steps=9 format=3 uid="uid://cgfpuhagd2pke"]
 
 [ext_resource type="FontFile" uid="uid://kmr1wkqcs40w" path="res://assets/fonts/Jersey15-Regular.ttf" id="1_l6cm7"]
+[ext_resource type="Script" uid="uid://v7err6cqo0y1" path="res://scripts/main_menu.gd" id="2_ekxnf"]
 
 [sub_resource type="Theme" id="Theme_l6cm7"]
 default_font = ExtResource("1_l6cm7")
@@ -45,6 +46,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_l6cm7")
+script = ExtResource("2_ekxnf")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -131,3 +133,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_ekxnf")
 theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
 text = "Exit
 "
+
+[connection signal="pressed" from="VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
