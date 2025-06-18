@@ -24,5 +24,11 @@ A simple Godot Engine project demonstrating **multiplayer over a local network (
 ### Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/godot_multiplayer_example.git
+git clone https://github.com/bszarlej/godot_multiplayer_example.git
 cd godot_multiplayer_example
+```
+
+## 🎨 Attribution
+
+This project uses the **[Sprout Lands – Asset Pack](https://cupnooble.itch.io/sprout-lands-asset-pack)** by **cupnooble**.  
+Find more of their work on [cupnooble’s itch.io page](https://cupnooble.itch.io/).
