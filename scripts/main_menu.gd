@@ -1,5 +1,7 @@
 extends Control
 
+func _ready() -> void:
+	$UsernameEdit.text = Global.username
 
 func _on_host_button_pressed() -> void:
 	if NetworkManager.host_game():
@@ -13,3 +15,7 @@ func _on_join_button_pressed() -> void:
 
 func _on_exit_button_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_username_edit_text_changed(new_text: String) -> void:
+	Global.username = new_text

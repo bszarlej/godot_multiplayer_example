@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cgfpuhagd2pke"]
+[gd_scene load_steps=11 format=3 uid="uid://cgfpuhagd2pke"]
 
 [ext_resource type="FontFile" uid="uid://kmr1wkqcs40w" path="res://assets/fonts/Jersey15-Regular.ttf" id="1_l6cm7"]
 [ext_resource type="Script" uid="uid://v7err6cqo0y1" path="res://scripts/main_menu.gd" id="2_ekxnf"]
@@ -8,6 +8,19 @@ default_font = ExtResource("1_l6cm7")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wu84c"]
 bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ekxnf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ln24"]
+bg_color = Color(1, 1, 1, 0.164706)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vue75"]
 
@@ -55,6 +68,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_wu84c")
 
 [node name="Label" type="Label" parent="."]
@@ -65,13 +79,34 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -228.5
-offset_top = -222.0
+offset_top = -240.0
 offset_right = 228.5
-offset_bottom = -174.0
+offset_bottom = -192.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 47
 text = "Godot Multiplayer Example"
+
+[node name="UsernameEdit" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -130.0
+offset_right = 150.0
+offset_bottom = -86.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 22
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ekxnf")
+theme_override_styles/normal = SubResource("StyleBoxFlat_8ln24")
+placeholder_text = "Choose your username"
+alignment = 1
+max_length = 16
+caret_blink = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -134,6 +169,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
 text = "Exit
 "
 
+[connection signal="text_changed" from="UsernameEdit" to="." method="_on_username_edit_text_changed"]
 [connection signal="pressed" from="VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
