@@ -2,7 +2,6 @@
 
 A simple Godot Engine project demonstrating **multiplayer over a local network (LAN)** using Godot’s high-level multiplayer API.
 
-![Demo](assets/preview/menu.png)
 ![Demo](assets/preview/gameplay.gif)
 
 ---
