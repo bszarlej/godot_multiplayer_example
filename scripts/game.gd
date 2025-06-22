@@ -20,7 +20,7 @@ func player_spawner_function(peer_id: int):
 	return player
 
 func _on_peer_connected(peer_id: int) -> void:
-	var player = player_spawner.spawn(peer_id)
+	player_spawner.spawn(peer_id)
 
 func _on_peer_disconnected(peer_id: int) -> void:
 	var player = get_node_or_null("Players/%s" % peer_id)

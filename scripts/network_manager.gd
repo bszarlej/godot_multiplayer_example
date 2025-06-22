@@ -1,6 +1,6 @@
 extends Node
 
-var peer = null
+var peer: ENetMultiplayerPeer
 
 func host_game(port: int=12345):
 	print("Hosting a game on port %s" % port)

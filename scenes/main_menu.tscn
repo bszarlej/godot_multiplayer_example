@@ -108,6 +108,27 @@ alignment = 1
 max_length = 16
 caret_blink = true
 
+[node name="IPAddressEdit" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -485.0
+offset_top = 41.0
+offset_right = -147.0
+offset_bottom = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 22
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ekxnf")
+theme_override_styles/normal = SubResource("StyleBoxFlat_8ln24")
+placeholder_text = "Enter IP Address (127.0.0.1 by default)"
+alignment = 1
+max_length = 16
+caret_blink = true
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -136,7 +157,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_vue75")
 theme_override_styles/hover = SubResource("StyleBoxFlat_l6cm7")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ekxnf")
 theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
-text = "Host (127.0.0.1)"
+text = "Host"
 
 [node name="JoinButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2

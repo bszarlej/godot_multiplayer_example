@@ -9,7 +9,7 @@ func _on_host_button_pressed() -> void:
 
 
 func _on_join_button_pressed() -> void:
-	if NetworkManager.join_game("127.0.0.1"):
+	if NetworkManager.join_game($IPAddressEdit.text):
 		get_tree().change_scene_to_file("res://scenes/game.tscn")
 
 

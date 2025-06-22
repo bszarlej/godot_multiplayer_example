@@ -29,10 +29,11 @@ func _ready() -> void:
 		username = Global.username
 		username_color = Global.username_colors[randi() % Global.username_colors.size()]
 		var game = get_tree().get_root().get_node("Game")
-		game.receive_player_username.rpc_id(1, get_multiplayer_authority(), username)
+		if not multiplayer.is_server():
+			game.receive_player_username.rpc_id(1, get_multiplayer_authority(), username)
 	sprite.play()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if not is_multiplayer_authority(): return
 	
 	var direction = Input.get_vector(
