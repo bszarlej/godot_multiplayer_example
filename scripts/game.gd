@@ -38,7 +38,7 @@ func _on_server_disconnected() -> void:
 	Global.server_disconnected = !self_disconnect
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 	
-@rpc("any_peer", "call_local")
+@rpc("any_peer", "call_local", "reliable")
 func recieve_user_information(username: String) -> void:
 	send_chat_message("%s has joined the game." % username, Color.FOREST_GREEN)
 
