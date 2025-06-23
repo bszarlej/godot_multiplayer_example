@@ -1,3 +1,4 @@
+class_name Game
 extends Node2D
 
 @onready var message_container: VBoxContainer = $UiLayer/MessageContainer
@@ -5,61 +6,54 @@ extends Node2D
 
 var player_scene: PackedScene = preload("res://scenes/player.tscn")
 
+var self_disconnect = false
+
 func _ready() -> void:
-	player_spawner.set_spawn_function(player_spawner_function)
+	player_spawner.set_spawn_function(player_spawn_function)
 	if multiplayer.is_server(): player_spawner.spawn(1)
 
 	multiplayer.peer_connected.connect(_on_peer_connected)
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
-	multiplayer.server_disconnected.connect(get_tree().change_scene_to_file.bind("res://scenes/main_menu.tscn"))
+	multiplayer.server_disconnected.connect(_on_server_disconnected)
  
-func player_spawner_function(peer_id: int):
+func player_spawn_function(peer_id: int):
 	var player = player_scene.instantiate()
 	player.set_name(str(peer_id))
 	player.set_multiplayer_authority(peer_id)
 	return player
 
+# Server and Clients
 func _on_peer_connected(peer_id: int) -> void:
 	player_spawner.spawn(peer_id)
 
+# Server and Clients
 func _on_peer_disconnected(peer_id: int) -> void:
 	var player = get_node_or_null("Players/%s" % peer_id)
 	if not player: return
+	send_chat_message("%s has left the game." % player.username, Color.DARK_RED)
 	player.queue_free()
-	if multiplayer and multiplayer.is_server():
-		display_disconnect_message.rpc_id(0, player.username)
 
-@rpc("reliable", "call_local")
-func display_join_message(username: String) -> void:
-	display_message("%s has joined the game!" % username, Color.FOREST_GREEN)
-
-@rpc("reliable", "call_local")
-func display_disconnect_message(username: String) -> void:
-	display_message("%s has left the game!" % username, Color.DARK_RED)
+# Clients only
+func _on_server_disconnected() -> void:
+	Global.server_disconnected = !self_disconnect
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 	
-@rpc("any_peer", "reliable")
-func receive_player_username(peer_id: int, username: String):
-	if not multiplayer or not multiplayer.is_server(): return
-	var player = get_node_or_null("Players/%s" % peer_id)
-	if player:
-		player.username = username
-		display_join_message.rpc_id(0, username)
+@rpc("any_peer", "call_local")
+func recieve_user_information(username: String) -> void:
+	send_chat_message("%s has joined the game." % username, Color.FOREST_GREEN)
 
-func display_message(message: String, color: Color):
-	var label := Label.new()
-	label.text = message
-	label.add_theme_color_override('font_color', color)
-	message_container.add_child(label)
+func send_chat_message(message: String, color := Color("#242424")):
+	var chat_message := Label.new()
+	chat_message.text = message
+	chat_message.add_theme_color_override('font_color', color)
+	message_container.add_child(chat_message)
 	await get_tree().create_timer(5).timeout
+	if not chat_message: return
 	var tween = create_tween()
-	tween.tween_property(label, "modulate:a", 0.0, 0.8)
-	tween.tween_callback(label.queue_free)
-
+	tween.tween_property(chat_message, "modulate:a", 0.0, 0.8)
+	tween.tween_callback(chat_message.queue_free)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("quit"):
-		if multiplayer.is_server():
-			for peer in multiplayer.get_peers():
-				multiplayer.multiplayer_peer.disconnect_peer(peer)
+		self_disconnect = true
 		multiplayer.multiplayer_peer.close()
-		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

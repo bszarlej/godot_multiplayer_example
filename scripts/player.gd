@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 @onready var sprite: AnimatedSprite2D = $PlayerSprite
+@onready var game: Game = get_tree().get_root().get_node("Game")
 
 const SPEED := 150
 
@@ -10,15 +11,12 @@ var last_direction = Vector2.DOWN
 var username: String:
 	get: return $UsernameLabel.text
 	set(value): 
-		if not value.is_empty():
-			$UsernameLabel.text = value
-		else:
-			$UsernameLabel.text = "Player%s" % get_multiplayer_authority()
+		$UsernameLabel.text = value if not value.is_empty() \
+		else "Player%s" % get_multiplayer_authority()
 
 var username_color: Color:
 	get: return $UsernameLabel.get_theme_color("font_color")
 	set(color): $UsernameLabel.add_theme_color_override("font_color", color)
-
 
 func _ready() -> void:
 	var camera = Camera2D.new()
@@ -28,9 +26,7 @@ func _ready() -> void:
 		camera.make_current()
 		username = Global.username
 		username_color = Global.username_colors[randi() % Global.username_colors.size()]
-		var game = get_tree().get_root().get_node("Game")
-		if not multiplayer.is_server():
-			game.receive_player_username.rpc_id(1, get_multiplayer_authority(), username)
+		game.recieve_user_information.rpc_id(0, username)
 	sprite.play()
 
 func _physics_process(_delta: float) -> void:

@@ -11,3 +11,5 @@ var username_colors: Array[Color] = [
 	Color.DARK_VIOLET,
 	Color.DARK_SLATE_GRAY,
 ]
+
+var server_disconnected := false
