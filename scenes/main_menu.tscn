@@ -2,6 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://kmr1wkqcs40w" path="res://assets/fonts/Jersey15-Regular.ttf" id="1_l6cm7"]
 [ext_resource type="Script" uid="uid://v7err6cqo0y1" path="res://scripts/main_menu.gd" id="2_ekxnf"]
+[ext_resource type="PackedScene" uid="uid://ovu1hbcclfqq" path="res://scenes/dialog.tscn" id="3_bqqt6"]
 
 [sub_resource type="Theme" id="Theme_l6cm7"]
 default_font = ExtResource("1_l6cm7")
@@ -51,18 +52,10 @@ corner_radius_bottom_left = 16
 shadow_size = 5
 shadow_offset = Vector2(3, 3)
 
-[sub_resource type="SystemFont" id="SystemFont_ekxnf"]
+[sub_resource type="SystemFont" id="SystemFont_bqqt6"]
 
-[sub_resource type="Theme" id="Theme_bqqt6"]
-default_font = SubResource("SystemFont_ekxnf")
-default_font_size = 18
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rtw2f"]
-content_margin_left = 8.0
-content_margin_top = 8.0
-content_margin_right = 8.0
-content_margin_bottom = 8.0
-bg_color = Color(0, 0, 0, 1)
+[sub_resource type="Theme" id="Theme_wu84c"]
+default_font = SubResource("SystemFont_bqqt6")
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -203,17 +196,10 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
 text = "Exit
 "
 
-[node name="AcceptDialog" type="AcceptDialog" parent="."]
-canvas_item_default_texture_filter = 0
-title = "Connection Error"
-initial_position = 1
-size = Vector2i(420, 100)
-unresizable = true
-popup_window = true
-theme = SubResource("Theme_bqqt6")
-theme_override_styles/panel = SubResource("StyleBoxFlat_rtw2f")
-dialog_close_on_escape = false
-dialog_autowrap = true
+[node name="Dialog" parent="." instance=ExtResource("3_bqqt6")]
+visible = false
+layout_mode = 1
+theme = SubResource("Theme_wu84c")
 
 [connection signal="text_changed" from="UsernameEdit" to="." method="_on_username_edit_text_changed"]
 [connection signal="text_changed" from="IPAddressEdit" to="." method="_on_ip_address_edit_text_changed"]
