@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=3 uid="uid://cgfpuhagd2pke"]
+[gd_scene load_steps=5 format=3 uid="uid://cgfpuhagd2pke"]
 
-[ext_resource type="Theme" uid="uid://bmf31mho1mjjt" path="res://addons/sprout_lands_ui/content/sprout_lands_theme.tres" id="1_bqqt6"]
 [ext_resource type="Script" uid="uid://v7err6cqo0y1" path="res://scripts/main_menu.gd" id="2_ekxnf"]
 [ext_resource type="PackedScene" uid="uid://ovu1hbcclfqq" path="res://scenes/dialog.tscn" id="3_bqqt6"]
 
@@ -16,7 +15,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_bqqt6")
 script = ExtResource("2_ekxnf")
 
 [node name="Panel" type="Panel" parent="."]
@@ -115,6 +113,7 @@ text = "Exit
 "
 
 [node name="Dialog" parent="." instance=ExtResource("3_bqqt6")]
+visible = false
 layout_mode = 1
 theme = SubResource("Theme_wu84c")
 

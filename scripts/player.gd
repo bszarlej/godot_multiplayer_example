@@ -30,7 +30,7 @@ func _ready() -> void:
 	sprite.play()
 
 func _physics_process(_delta: float) -> void:
-	if not is_multiplayer_authority(): return
+	if not multiplayer or not is_multiplayer_authority(): return
 	
 	var direction = Input.get_vector(
 		"move_left",
