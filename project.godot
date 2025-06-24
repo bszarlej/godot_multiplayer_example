@@ -24,8 +24,13 @@ Global="*res://scripts/global.gd"
 
 window/stretch/mode="viewport"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/sprout_lands_ui/plugin.cfg")
+
 [gui]
 
+theme/custom="res://assets/sprout_lands_theme.tres"
 theme/default_font_multichannel_signed_distance_field=true
 
 [input]
@@ -69,3 +74,8 @@ quit={
 
 textures/canvas_textures/default_texture_filter=0
 textures/vram_compression/import_etc2_astc=true
+
+[sprout_lands_ui]
+
+disable_plugin_dialogues=true
+copy_path="res://assets"

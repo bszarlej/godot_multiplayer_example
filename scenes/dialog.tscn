@@ -1,35 +1,37 @@
-[gd_scene load_steps=6 format=3 uid="uid://ovu1hbcclfqq"]
+[gd_scene load_steps=7 format=3 uid="uid://ovu1hbcclfqq"]
 
 [ext_resource type="Script" uid="uid://b3p7162ey4782" path="res://scripts/dialog.gd" id="1_pkx4w"]
+[ext_resource type="Texture2D" uid="uid://bef816edvcpop" path="res://addons/sprout_lands_ui/content/assets/Sprite sheet for Basic Pack.png" id="2_36pgd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tmfn4"]
 bg_color = Color(0, 0, 0, 0.501961)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_36pgd"]
-bg_color = Color(0, 0, 0, 0)
-shadow_color = Color(0, 0, 0, 0.376471)
-shadow_size = 6
-shadow_offset = Vector2(6, 6)
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0a082"]
-content_margin_left = 16.0
-content_margin_top = 8.0
-content_margin_right = 16.0
-content_margin_bottom = 8.0
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pkx4w"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tmfn4"]
 content_margin_left = 24.0
-content_margin_top = 16.0
+content_margin_top = 12.0
+content_margin_right = 24.0
+content_margin_bottom = 12.0
+texture = ExtResource("2_36pgd")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+region_rect = Rect2(107, 155, 26, 26)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_auqi6"]
+content_margin_left = 24.0
+content_margin_top = 24.0
 content_margin_right = 24.0
 content_margin_bottom = 16.0
-bg_color = Color(0.187176, 0.187176, 0.187176, 1)
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-anti_aliasing = false
+texture = ExtResource("2_36pgd")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+region_rect = Rect2(59, 155, 26, 26)
 
 [node name="Dialog" type="Control"]
 layout_mode = 3
@@ -68,31 +70,28 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_36pgd")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
-theme_override_constants/separation = 0
 
 [node name="Panel" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_0a082")
+theme_override_styles/panel = SubResource("StyleBoxTexture_tmfn4")
 
 [node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Panel"]
 custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 20
 autowrap_mode = 3
 
 [node name="Panel2" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_pkx4w")
+theme_override_styles/panel = SubResource("StyleBoxTexture_auqi6")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Panel2"]
 layout_mode = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 8
 
 [node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Panel2/VBoxContainer"]
 custom_minimum_size = Vector2(450, 50)
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
 autowrap_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Panel2/VBoxContainer"]
@@ -104,6 +103,6 @@ alignment = 1
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
-theme_override_font_sizes/font_size = 14
+text = "OK"
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Panel2/VBoxContainer/HBoxContainer/ConfirmButton" to="." method="_on_confirm_button_pressed"]
