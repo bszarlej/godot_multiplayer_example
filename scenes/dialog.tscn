@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b3p7162ey4782" path="res://scripts/dialog.gd" id="1_pkx4w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tmfn4"]
-bg_color = Color(0, 0, 0, 0.12549)
+bg_color = Color(0, 0, 0, 0.501961)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_36pgd"]
 bg_color = Color(0, 0, 0, 0)
