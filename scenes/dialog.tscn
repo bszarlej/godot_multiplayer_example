@@ -79,6 +79,7 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_tmfn4")
 custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="Panel2" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
@@ -92,6 +93,7 @@ theme_override_constants/separation = 8
 [node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Panel2/VBoxContainer"]
 custom_minimum_size = Vector2(450, 50)
 layout_mode = 2
+horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Panel2/VBoxContainer"]
