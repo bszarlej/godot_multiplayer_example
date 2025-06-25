@@ -157,19 +157,21 @@ animation = &"idle_down"
 frame_progress = 0.840376
 
 [node name="UsernameLabel" type="Label" parent="."]
+texture_filter = 2
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -2.0
-offset_top = -21.0
-offset_right = 2.0
-offset_bottom = -12.625
+offset_left = -17.0
+offset_top = -22.0
+offset_right = 17.0
+offset_bottom = -13.625
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 6
+text = "Username"
+horizontal_alignment = 1
 
 [node name="TransformSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_qhqgy")
